@@ -1,24 +1,11 @@
 import { Hono } from "hono";
+import userRouter from "./routes/userRouter";
+import blogRouter from "./routes/blogRouter";
+import { IHono } from "./types";
 
-const app = new Hono();
+const app = new Hono<IHono>();
 
-app.post("/api/v1/user/signup", (c) => {
-  return c.text("Hello Hono!");
-});
-app.post("/api/v1/user/signin", (c) => {
-  return c.text("Hello Hono!");
-});
-app.post("/api/v1/create-blog", (c) => {
-  return c.text("Hello Hono!");
-});
-app.put("/api/v1/update-blog", (c) => {
-  return c.text("Hello Hono!");
-});
-app.get("/api/v1/blog", (c) => {
-  return c.text("Hello Hono! ");
-});
-app.get("/api/v1/blog/bulk", (c) => {
-  return c.text("Hello Hono!");
-});
+app.route("/api/v1/user", userRouter);
+app.route("/api/v1/blog", blogRouter);
 
 export default app;
